@@ -1,0 +1,55 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar color="ublue">
+      <ion-title color="light">Registro de usuario</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+  
+    <ion-row>
+      <ion-col size="12" size-sm="10" offset-sm="1" size-md="8" offset-md="2" size-lg="6" offset-lg="3" size-xl="4"
+        offset-xl="4">
+  
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">MoneyUCAB</ion-card-title>
+          </ion-card-header>
+  
+          <ion-card-content>
+            <form [formGroup]="usuario.formModel" role="form" autocomplete="off" (submit)="onSubmit()">
+              
+              <ion-item lines="none">
+                <ion-label position="stacked">Nombre</ion-label>
+                <ion-input type="email" placeholder="nombre" formControlName="UserName" required></ion-input>
+              </ion-item>
+
+              <ion-item lines="none">
+                <ion-label position="stacked">Correo</ion-label>
+                <ion-input type="email" placeholder="correo" formControlName="Email" required></ion-input>
+              </ion-item>
+    
+              <div formGroupName="Passwords">
+                <ion-item lines="none">
+                  <ion-label position="stacked">Contraseña</ion-label>
+                  <ion-input type="password" placeholder="contraseña" formControlName="Password" required>
+                  </ion-input>
+                </ion-item>
+  
+                <ion-item lines="none">
+                  <ion-label position="stacked">Contraseña</ion-label>
+                  <ion-input type="password" placeholder="contraseña" formControlName="ConfirmPassword" required>
+                  </ion-input>
+                </ion-item>
+              </div>
+              <ion-button expand="block" color="secondary" type="submit" >Registrar
+              </ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+  
+      </ion-col>
+    </ion-row>
+  </ion-content>
+  
+</ion-content>

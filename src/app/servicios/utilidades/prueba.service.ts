@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Prueba } from "../../interfaces/prueba.model";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +32,9 @@ export class PaymentOrderService {
     }
   ]
 
-  constructor() { }
+  url = "http://localhost:5000/api/saldo/Consultar?id="
+
+  constructor(private http: HttpClient) { }
 
   getOrders(){
     return [...this.orders]
@@ -58,5 +62,19 @@ export class PaymentOrderService {
     this.orders = this.orders.filter(order => {
       return order.id !== orderId
     })
+  }
+
+  saldoActual(){
+
+    let param = new HttpParams().set('id', "1");
+    let url = "http://localhost:5000/api/monedero/Consultar";
+    
+    this.http.get(url, {params: param})
+    .toPromise()
+    .then((data : any) => {
+
+    })
+
+    return this.http.get(url, {params: param});
   }
 }

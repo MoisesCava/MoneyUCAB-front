@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from "../interfaces/usuario.model";
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -15,7 +16,16 @@ export class UsuariosService {
     idUsuario : 27042411
   };
 
-  constructor(http: HttpClient) { }
+  constructor(private http: HttpClient, private form: FormBuilder) { }
+
+  formModel = this.form.group({
+    UserName : ['', Validators.required],
+    Email : ['', [Validators.required, Validators.email]],
+    Passwords : this.form.group({
+      Password : ['', [Validators.required, Validators.minLength(6)]],
+      ConfirmPassword : ['', Validators.required]
+    })
+  });
 
   getAtributtes() : Usuario{
     return {
@@ -31,7 +41,19 @@ export class UsuariosService {
     this.usuario = usuario;
   }
 
-  putDatosUsuario(){
-    
+
+
+  registrar() {
+    var body = {
+      UserName : this.formModel.value.UserName,
+      Email : this.formModel.value.Email,
+      Password : this.formModel.value.Passwords.Password
+    };
+    return this.http.post('http://localhost:5000/api/Authentication/Register', body);
   }
+
+  iniciarSesion(loginForm){
+    return this.http.post('http://localhost:5000/api/Authentication/Register', loginForm)
+  }
+
 }
