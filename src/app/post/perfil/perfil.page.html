@@ -1,9 +1,46 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>perfil</ion-title>
+  <ion-toolbar color="ublue">
+
+    <ion-buttons slot="start" >
+      <ion-back-button color="light" defaultHref="/post" ></ion-back-button>
+    </ion-buttons>
+
+    <ion-title color="light">Editar perfil </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf='usuario'>
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="guardar()">
+        <ion-avatar class="avatar" id="img-user">
+          <img [src]='usuario.imagen'  alt="">
+        </ion-avatar>
+        <div class="ion-text-center">
+          <ion-label ><a>Cambiar imagen</a></ion-label>
+        </div>
+        <ion-list lines="full">
+          <ion-item class="margin-top-5">
+            <ion-label position="floating">nombre</ion-label>
+            <ion-input [(ngModel)]="usuario.nombre" name="nombre" ></ion-input>
+          </ion-item>
+          <ion-item class="margin-top-5">
+            <ion-label position="floating">apellido</ion-label>
+            <ion-input [(ngModel)]="usuario.apellido" name="apellido" pattern="'[a-zA-Z0-9._]+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}'"></ion-input>
+          </ion-item>
+          <ion-item class="margin-top-5">
+            <ion-label position="floating">correo</ion-label>
+            <ion-input [(ngModel)]="usuario.correo" name="correo"></ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button type="submit" color="light_violet" expand="block" fill="outline" id="button-guardar" class="margin-top-40">Guardar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<style>
+  .avatar{
+    margin: auto;
+  }
+</style>

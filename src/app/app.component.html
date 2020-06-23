@@ -6,20 +6,13 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-list >
-        <ion-menu-toggle auto-hide="true">
-          <ion-item  routerDirection="forward">
-              <ion-icon slot="start"></ion-icon>
-          </ion-item>
-        </ion-menu-toggle>
+        <ion-list *ngFor="let pages of navigate">
 
         <ion-menu-toggle  auto-hide="false" class="menu-opcion" >
-
-          <ion-item routerLink="/bank">
-            <ion-icon name="log-out-outline" slot="start"></ion-icon>
-            Cerrar sesion 
+          <ion-item [routerLink]="pages.url" routerDirection="forward">
+            <ion-icon [name]="pages.icon" slot="start"></ion-icon>
+            {{pages.title}} 
           </ion-item>
-
         </ion-menu-toggle>
 
         </ion-list>

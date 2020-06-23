@@ -29,7 +29,7 @@ export class PostPage implements OnInit {
   }
 
   addNewOrder(){
-    this.router.navigate(['/add-order']);
+    this.router.navigate(['/solicitar-pago']);
   }
 
   handleInput(event){

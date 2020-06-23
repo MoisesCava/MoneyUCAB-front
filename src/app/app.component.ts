@@ -10,11 +10,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  navigate : any;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
   ) {
+    this.sideMenu();
     this.initializeApp();
   }
 
@@ -23,5 +27,37 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  sideMenu()
+  {
+    this.navigate =
+    [
+      {
+        title : "Historial de operaciones",
+        url   : "/historial",
+        icon  : "list-outline"
+      },
+      {
+        title : "Aprobar reintegros",
+        url   : "/aprobar-reintegro",
+        icon  : "reload-outline"
+      },
+      {
+        title : "Solicitar pago",
+        url   : "/solicitar-pago",
+        icon  : "cash-outline"
+      },
+      {
+        title : "Cierre de caja",
+        url   : "/cierre",
+        icon  : "bar-chart-outline"
+      },
+      {
+        title : "Perfil",
+        url   : "/perfil",
+        icon  : "person-outline"
+      },
+    ]
   }
 }

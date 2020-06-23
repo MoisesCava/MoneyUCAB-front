@@ -1,9 +1,30 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>solicitar-pago</ion-title>
+  <ion-toolbar color="ugreen">
+    <ion-buttons slot="start">
+      <ion-back-button color="light" defaultHref='/post'></ion-back-button>
+    </ion-buttons>
+    <ion-title><ion-text color="light">Solicitar Pago</ion-text></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+          <ion-label position="stacked">Nombre<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input type="text" placeholder="Escriba el nombre" #nombre_titular></ion-input>
+          <ion-label position="stacked">Monto<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input type="number" placeholder="Escriba el monto" #monto></ion-input>
+          <ion-label position="stacked">Foto de perfil<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input type="url" placeholder="Https://" #imageURL></ion-input>
+          <ion-label position="stacked">Motivo de pago</ion-label>
+            <ion-textarea #comments></ion-textarea>
+          <ion-button color="ublue" expand="full" type="submit" (click)="saveNewOrder(nombre_titular,monto,imageURL,comments)" >
+            <ion-text color="light">Enviar</ion-text>
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>
