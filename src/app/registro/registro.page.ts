@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  UsuariosService  } from "../servicios/usuarios.service";
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -10,6 +11,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegistroPage implements OnInit {
 
+  formModel = {
+    UserName: '',
+    Email : '',
+    Password : ''
+  }
+
   constructor(private usuario: UsuariosService, private router: Router,  private formBuilder: FormBuilder) 
   { 
     
@@ -18,11 +25,14 @@ export class RegistroPage implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(){
-    this.usuario.registrar().subscribe(
-      (res : any) => {
-        console.log(res);
+  onSubmit(form: NgForm){
+    this.usuario.registrar(form.value).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
         this.router.navigateByUrl('/post');
+      },
+      err => {
+        console.log(err); // error JSON
       }
     );
   }

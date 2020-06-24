@@ -15,33 +15,27 @@
           <ion-card-header>
             <ion-card-title class="ion-text-center">MoneyUCAB</ion-card-title>
           </ion-card-header>
-  
+
           <ion-card-content>
-            <form [formGroup]="usuario.formModel" role="form" autocomplete="off" (submit)="onSubmit()">
+            <form #form="ngForm" role="form" autocomplete="off" (submit)="onSubmit(form)">
               
               <ion-item lines="none">
                 <ion-label position="stacked">Nombre</ion-label>
-                <ion-input type="email" placeholder="nombre" formControlName="UserName" required></ion-input>
+                <ion-input #UserName="ngModel" name="UserName" [(ngModel)]="formModel.UserName" class="form-control" placeholder="Nombre de usuario"  required ></ion-input>
               </ion-item>
 
               <ion-item lines="none">
                 <ion-label position="stacked">Correo</ion-label>
-                <ion-input type="email" placeholder="correo" formControlName="Email" required></ion-input>
+                <ion-input #Email="ngModel" name="Email" [(ngModel)]="formModel.Email" class="form-control" placeholder="Correo electrónico" type="email" required ></ion-input>
               </ion-item>
     
-              <div formGroupName="Passwords">
                 <ion-item lines="none">
                   <ion-label position="stacked">Contraseña</ion-label>
-                  <ion-input type="password" placeholder="contraseña" formControlName="Password" required>
+                  <ion-input input #Password="ngModel" name="Password" [(ngModel)]="formModel.Password" class="form-control" placeholder="Contraseña" type="password" required>
                   </ion-input>
                 </ion-item>
   
-                <ion-item lines="none">
-                  <ion-label position="stacked">Contraseña</ion-label>
-                  <ion-input type="password" placeholder="contraseña" formControlName="ConfirmPassword" required>
-                  </ion-input>
-                </ion-item>
-              </div>
+
               <ion-button expand="block" color="secondary" type="submit" >Registrar
               </ion-button>
             </form>

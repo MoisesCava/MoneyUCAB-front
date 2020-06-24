@@ -43,17 +43,13 @@ export class UsuariosService {
 
 
 
-  registrar() {
-    var body = {
-      UserName : this.formModel.value.UserName,
-      Email : this.formModel.value.Email,
-      Password : this.formModel.value.Passwords.Password
-    };
-    return this.http.post('http://localhost:5000/api/Authentication/Register', body);
+  registrar(registerForm) {
+
+    return this.http.post('http://localhost:5000/api/Authentication/Register', registerForm);
   }
 
   iniciarSesion(loginForm){
-    return this.http.post('http://localhost:5000/api/Authentication/Register', loginForm)
+    return this.http.post('http://localhost:5000/api/Authentication/Login', loginForm)
   }
 
 }
