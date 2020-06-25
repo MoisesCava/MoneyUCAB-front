@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Prueba } from "../../interfaces/prueba.model";
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -65,16 +65,17 @@ export class PaymentOrderService {
   }
 
   saldoActual(){
-
+    
+    let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
     let param = new HttpParams().set('id', "1");
     let url = "http://localhost:5000/api/monedero/Consultar";
     
-    this.http.get(url, {params: param})
+    this.http.get(url, {params: param, headers: header})
     .toPromise()
     .then((data : any) => {
-
+      console.log(localStorage.getItem('token'));
     })
 
-    return this.http.get(url, {params: param});
+    return this.http.get(url, {params: param, headers: header});
   }
 }
