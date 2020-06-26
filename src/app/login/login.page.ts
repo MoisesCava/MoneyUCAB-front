@@ -56,7 +56,6 @@ export class LoginPage implements OnInit {
     await this.presentLoading();
     this.usuario.iniciarSesion(form.value).subscribe(
       (res:any) => {
-        //console.log(res); // res JSON
         localStorage.setItem('token', res.result.token);
         localStorage.setItem('email', this.formModel.email);
         this.loadingController.dismiss();

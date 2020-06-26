@@ -35,14 +35,15 @@ export class PostPage implements OnInit {
       .subscribe(
       (data: any) =>
       {
-        localStorage.setItem('idUsuario', data.idUsuario);
-        localStorage.setItem('usuario', data.usuario);
-        localStorage.setItem('telefono', data.telefono);
-        localStorage.setItem('direccion', data.direccion);
+        localStorage.setItem('idUsuario', data.result.idUsuario);
+        localStorage.setItem('usuario', data.result.usuario);
+        localStorage.setItem('telefono', data.result.telefono);
+        localStorage.setItem('direccion', data.result.direccion);
         console.log('El id de usuario es:', localStorage.getItem('idUsuario') )
         console.log('El nombre es:', localStorage.getItem('usuario') )
         console.log('El telefono es:', localStorage.getItem('telefono') )
         console.log('La direccion es:', localStorage.getItem('direccion') )
+        console.log(data);
         },
         err => {
           console.log(err.message);

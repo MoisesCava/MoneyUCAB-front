@@ -27,6 +27,10 @@ const routes: Routes = [
   {
     path: 'solicitar-pago',
     loadChildren: () => import('./solicitar-pago/solicitar-pago.module').then( m => m.SolicitarPagoPageModule)
+  },
+  {
+    path: 'billetera',
+    loadChildren: () => import('./billetera/billetera.module').then( m => m.BilleteraPageModule)
   }
 ];
 

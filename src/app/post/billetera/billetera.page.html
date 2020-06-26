@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Billetera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label>
+    Tarjetas registradas: 
+  </ion-label>
+  <ion-list>
+    <ion-card >
+      <ion-item *ngFor="let tarjeta of tarjetas" >
+        <ion-icon slot="start" name="card-outline">
+        </ion-icon>
+        <ion-card-header>
+          <ion-card-title>{{tarjeta.numero}}</ion-card-title>
+        </ion-card-header>
+      </ion-item>
+    </ion-card> 
+  </ion-list>
+  <br>
+  <br>
+  <br>
+  <ion-label>
+    Cuentas registradas: 
+  </ion-label>
+  <ion-list>
+    <ion-card >
+      <ion-item *ngFor="let cuenta of cuentas" >
+        <ion-icon name="wallet-outline">
+        </ion-icon>
+        <ion-card-header>
+          <ion-card-title>{{cuenta._numero}}</ion-card-title>
+        </ion-card-header>
+      </ion-item>
+    </ion-card> 
+  </ion-list>
+
+</ion-content>

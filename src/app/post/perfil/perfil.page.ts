@@ -46,6 +46,11 @@ export class PerfilPage implements OnInit {
   }
 
   ionViewWillEnter(){
+    this.usuarioService.formModel.reset();
+    this.formModel.usuario = localStorage.getItem('usuario');
+    this.formModel.email = localStorage.getItem('email');
+    this.formModel.telefono = localStorage.getItem('telefono');
+    this.formModel.direccion = localStorage.getItem('direccion');
   }
 
   async presentToast(color : string, mensaje : string) {
@@ -93,11 +98,10 @@ export class PerfilPage implements OnInit {
     this.usuarioService.modificarUsaurio().subscribe(
       (res:any) => {
         this.loadingController.dismiss();
-        localStorage.setItem('telefono', res.telefono);
-        localStorage.setItem('direccion', res.direccion);
+
         this.successToast('success', 'Datos modificados satisfactioamente')
 
-        this.router.navigateByUrl('/perfil');
+        this.router.navigateByUrl('/post');
       },
       err => {
         this.loadingController.dismiss();
