@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentOrderService } from "../servicios/utilidades/prueba.service";
 import { Router } from "@angular/router";
 import { Saldo } from "../interfaces/saldo.model";
+import { UsuariosService } from '../servicios/usuarios.service';
 
 @Component({
   selector: 'app-post',
@@ -15,9 +16,7 @@ export class PostPage implements OnInit {
   saldo: any;
 
 
-
-
-  constructor(private orderService: PaymentOrderService, private router: Router) {}
+  constructor(private orderService: PaymentOrderService, private router: Router, private usuarioService: UsuariosService) {}
 
   ngOnInit() {
     this.orderService.saldoActual()
@@ -30,6 +29,24 @@ export class PostPage implements OnInit {
       err => {
         console.log(err.message);
       }
+      )
+
+      this.usuarioService.getDatosUsuario()
+      .subscribe(
+      (data: any) =>
+      {
+        localStorage.setItem('idUsuario', data.idUsuario);
+        localStorage.setItem('usuario', data.usuario);
+        localStorage.setItem('telefono', data.telefono);
+        localStorage.setItem('direccion', data.direccion);
+        console.log('El id de usuario es:', localStorage.getItem('idUsuario') )
+        console.log('El nombre es:', localStorage.getItem('usuario') )
+        console.log('El telefono es:', localStorage.getItem('telefono') )
+        console.log('La direccion es:', localStorage.getItem('direccion') )
+        },
+        err => {
+          console.log(err.message);
+        }
       )
   }
 

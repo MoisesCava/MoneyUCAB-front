@@ -9,31 +9,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf='usuario'>
+<ion-content>
   <ion-card>
     <ion-card-content>
-      <form (ngSubmit)="guardar()">
-        <ion-avatar class="avatar" id="img-user">
-          <img [src]='usuario.imagen'  alt="">
-        </ion-avatar>
-        <div class="ion-text-center">
-          <ion-label ><a>Cambiar imagen</a></ion-label>
-        </div>
+      <form [formGroup]="usuarioService.formModel"  autocomplete="off" (submit)="onSubmit()">
         <ion-list lines="full">
+
+            <ion-input class="ion-hide" formControlName="usuario" name="nombre" > </ion-input>
+
+
+            <ion-input class="ion-hide" formControlName="email" name="email"></ion-input>
+
           <ion-item class="margin-top-5">
-            <ion-label position="floating">nombre</ion-label>
-            <ion-input [(ngModel)]="usuario.nombre" name="nombre" ></ion-input>
+            <ion-label position="fixed">Teléfono</ion-label>
+            <ion-input formControlName="telefono" [(ngModel)]="formModel.telefono" name="telefono" placeholder="{{formModel.telefono}}" ></ion-input>
           </ion-item>
           <ion-item class="margin-top-5">
-            <ion-label position="floating">apellido</ion-label>
-            <ion-input [(ngModel)]="usuario.apellido" name="apellido" pattern="'[a-zA-Z0-9._]+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}'"></ion-input>
+            <ion-label position="fixed">Dirección</ion-label>
+            <ion-input formControlName="direccion" [(ngModel)]="formModel.direccion" name="direccion" placeholder="{{formModel.direccion}}"></ion-input>
           </ion-item>
-          <ion-item class="margin-top-5">
-            <ion-label position="floating">correo</ion-label>
-            <ion-input [(ngModel)]="usuario.correo" name="correo"></ion-input>
-          </ion-item>
+          <ion-input class="ion-hide" formControlName="idUsuario" name="idUsuario"></ion-input>
         </ion-list>
-        <ion-button type="submit" color="light_violet" expand="block" fill="outline" id="button-guardar" class="margin-top-40">Guardar</ion-button>
+        <ion-button type="submit" color="light_violet" 
+        expand="block" fill="outline" id="button-guardar" 
+        class="margin-top-40" >Guardar</ion-button>
       </form>
     </ion-card-content>
   </ion-card>

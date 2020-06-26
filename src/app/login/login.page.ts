@@ -13,7 +13,8 @@ export class LoginPage implements OnInit {
 
   formModel = {
     email : '',
-    password : ''
+    password : '',
+    comercio: true
   }
 
   constructor(private usuario: UsuariosService, private router: Router, private toastController: ToastController, private loadingController: LoadingController ) { }
@@ -52,13 +53,12 @@ export class LoginPage implements OnInit {
   }
 
   async onSubmit(form: NgForm){
-
     await this.presentLoading();
     this.usuario.iniciarSesion(form.value).subscribe(
       (res:any) => {
         //console.log(res); // res JSON
         localStorage.setItem('token', res.result.token);
-        localStorage.setItem('usuario', this.formModel.email);
+        localStorage.setItem('email', this.formModel.email);
         this.loadingController.dismiss();
 
         this.router.navigateByUrl('/post');
@@ -67,7 +67,7 @@ export class LoginPage implements OnInit {
       },
       err => {
         this.loadingController.dismiss();
-        this.presentToast('danger', err.message);
+        this.presentToast('danger', 'Credenciales invalidas. Por favor, vuelva a intentarlo');
       }
     );
   }

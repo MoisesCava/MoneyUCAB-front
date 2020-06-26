@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from "../../interfaces/usuario.model";
-import { ToastController } from '@ionic/angular';
-import { UsuariosService } from '../../servicios/usuarios.service'
+import { ToastController, LoadingController } from '@ionic/angular';
+import { UsuariosService } from '../../servicios/usuarios.service';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Usuario } from "../../models/usuario.model";
 
 @Component({
   selector: 'app-perfil',
@@ -10,15 +12,40 @@ import { UsuariosService } from '../../servicios/usuarios.service'
 })
 export class PerfilPage implements OnInit {
 
-  usuario : Usuario;
+  constructor(private usuarioService : UsuariosService, 
+    public toastController : ToastController, 
+    private loadingController: LoadingController,
+    private router: Router) { }
 
-  constructor(private usuarioservice : UsuariosService, public toastController : ToastController) { }
+    formModel = {
+      usuario: '',
+      email : '',
+      telefono : '',
+      direccion: '',
+      idUsuario: 0
+    }
+
+
+    /*
+    this.id = data;
+        this.formModel.idUsuario = this.id.idUsuario;
+        console.log(this.formModel.idUsuario);
+    */
 
   ngOnInit() {
+
+    this.usuarioService.formModel.reset();
+    this.formModel.usuario = localStorage.getItem('usuario');
+    this.formModel.email = localStorage.getItem('email');
+    this.formModel.telefono = localStorage.getItem('telefono');
+    this.formModel.direccion = localStorage.getItem('direccion');
+    console.log(localStorage.getItem('usuario'));
+    console.log(localStorage.getItem('email'));
+    console.log(localStorage.getItem('telefono'));
+    console.log(localStorage.getItem('direccion'));
   }
 
   ionViewWillEnter(){
-    this.usuario = this.usuarioservice.getAtributtes();
   }
 
   async presentToast(color : string, mensaje : string) {
@@ -34,15 +61,49 @@ export class PerfilPage implements OnInit {
     });
     toast.present();
   }
-
-
-  guardar(){
-    if((this.usuario.apellido !== '') && (this.usuario.nombre !== '') && (this.usuario.correo !== '')){
-      this.usuarioservice.setAtributtes(this.usuario);
-      this.presentToast('success','Los cambios se han guardado correctamente');
-    }
-    else{
-      this.presentToast('warning','No puede dejar los valores en blanco.');
-    }
+  
+  async successToast(color : string, mensaje : string) {
+    const success = await this.toastController.create({
+      message: mensaje,
+      color : color,
+      buttons: [ 
+        {
+          icon: 'close',
+          role: 'cancel'
+        }
+      ]
+    });
+    success.present();
   }
+
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      spinner: "bubbles",
+      duration: 100000,
+      message: 'Cargando ...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading',
+    });
+    loading.present();
+  }
+
+  async onSubmit(){
+    await this.presentLoading();
+    this.usuarioService.modificarUsaurio().subscribe(
+      (res:any) => {
+        this.loadingController.dismiss();
+        localStorage.setItem('telefono', res.telefono);
+        localStorage.setItem('direccion', res.direccion);
+        this.successToast('success', 'Datos modificados satisfactioamente')
+
+        this.router.navigateByUrl('/perfil');
+      },
+      err => {
+        this.loadingController.dismiss();
+        this.presentToast('danger', 'Ha ocurrido un error al enviar el formulario');
+      }
+    );
+  }
+
 }

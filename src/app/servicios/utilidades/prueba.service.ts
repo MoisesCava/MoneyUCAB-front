@@ -32,7 +32,6 @@ export class PaymentOrderService {
     }
   ]
 
-  url = "http://localhost:5000/api/saldo/Consultar?id="
 
   constructor(private http: HttpClient) { }
 
@@ -67,7 +66,7 @@ export class PaymentOrderService {
   saldoActual(){
     
     let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
-    let param = new HttpParams().set('id', "1");
+    let param = new HttpParams().set('id', localStorage.getItem('idUsuario'));
     let url = "http://localhost:5000/api/monedero/Consultar";
     
     this.http.get(url, {params: param, headers: header})
