@@ -15,6 +15,21 @@ export class CobroService {
 
   constructor(private http: HttpClient, private form: FormBuilder) { }
 
+  ///api/dashboard/cobrosactivos?idUsuario=1&solicitante=1
+  cobrosActivos(){
+    let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    let param = new HttpParams().set('idUsuario', localStorage.getItem('idUsuario'))
+    .set('solicitante', localStorage.getItem('idUsuario'));
+    return this.http.get('http://localhost:5000/api/dashboard/cobrosactivos', {params: param, headers: header})
+  }
+
+  cancelarCobro(IdCobro){
+    console.log(IdCobro);
+    console.log(localStorage.getItem('token'));
+    let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    let param = new HttpParams().set('IdCobro', IdCobro);
+    return this.http.post('http://localhost:5000/api/Transfer/CancelarCobro', {headers: header, params: param})
+  }
 
   realizarCobro(){
     let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});

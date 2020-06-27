@@ -34,8 +34,8 @@ export class AppComponent {
     this.navigate =
     [
       {
-        title : "Historial de operaciones",
-        url   : "/historial",
+        title : "Historial de Cobros",
+        url   : "/cobros",
         icon  : "list-outline"
       },
       {

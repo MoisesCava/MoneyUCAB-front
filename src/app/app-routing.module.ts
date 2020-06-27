@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'billetera',
     loadChildren: () => import('./post/billetera/billetera.module').then( m => m.BilleteraPageModule)
+  },
+  {
+    path: 'cobros',
+    loadChildren: () => import('./post/cobros/cobros.module').then( m => m.CobrosPageModule)
   }
 ];
 
