@@ -15,7 +15,7 @@ export class TarjetaService {
   obtenerTarjetas(){
 
     let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
-    let param = new HttpParams().set('idUsuario', localStorage.getItem('idUsuario'));
+    let param = new HttpParams().set('IdUsuario', localStorage.getItem('idUsuario'));
 
     return this.http.get('http://localhost:5000/api/Dashboard/Tarjetas', {params: param, headers: header})
   }

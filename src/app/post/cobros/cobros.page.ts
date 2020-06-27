@@ -3,6 +3,7 @@ import { CobroActivo } from "../../models/cobroActivo.model";
 import { CobroService } from 'src/app/servicios/utilidades/cobro/cobro.service';
 import { AlertController } from "@ionic/angular";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ToastController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cobros',
@@ -16,6 +17,8 @@ export class CobrosPage implements OnInit {
   constructor(private cobroservice: CobroService, 
     private activatedRoute: ActivatedRoute, 
     private router: Router,
+    public toastController : ToastController, 
+    private loadingController: LoadingController,
     private alertController: AlertController) { }
 
   ngOnInit() {
@@ -34,9 +37,49 @@ export class CobrosPage implements OnInit {
     );
   }
 
+  async presentToast(color : string, mensaje : string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      color : color,
+      buttons: [ 
+        {
+          icon: 'close',
+          role: 'cancel'
+        }
+      ]
+    });
+    toast.present();
+  }
+  
+  async successToast(color : string, mensaje : string) {
+    const success = await this.toastController.create({
+      message: mensaje,
+      color : color,
+      buttons: [ 
+        {
+          icon: 'close',
+          role: 'cancel'
+        }
+      ]
+    });
+    success.present();
+  }
+
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      spinner: "bubbles",
+      duration: 100000,
+      message: 'Cargando ...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading',
+    });
+    loading.present();
+  }
   
 
   async onClick(idPago){
+  
     const alert = await this.alertController.create({
       header: 'Cancelar',
       message: '¿Desea cancelar este cobro?',
@@ -49,17 +92,22 @@ export class CobrosPage implements OnInit {
         {
           text: 'Aceptar',
           handler: () => {
+            
             this.cobroservice.cancelarCobro(idPago)
             .subscribe(
               (data: any) =>
               {
+                
+                this.successToast('success', 'Cobro cancelado satisfactoriamente')
                 console.log(data);
+                this.router.navigate(['/post']);
               },
               err =>{
                 console.log(err);
+                
+                this.presentToast('danger', 'Ha ocurrido un error al cancelar el cobro');
               }
-            );
-            this.router.navigate(['/cobros']);
+            );         
           }
         }
       ]
