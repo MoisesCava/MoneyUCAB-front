@@ -11,11 +11,6 @@ export class TarjetaService {
 
   constructor(private http: HttpClient) { }
 
-  getVacio() {
-
-    return [...this.tarjetas];
-
-  }
 
   obtenerTarjetas(){
 

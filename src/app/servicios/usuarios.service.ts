@@ -55,7 +55,6 @@ export class UsuariosService {
       direccion: this.formModel.value.direccion,
       idUsuario: parseInt(localStorage.getItem('idUsuario'))
     };
-    console.log(body);
     return this.http.post('http://localhost:5000/api/Authentication/Modification', body , {headers: header});
   }
 
