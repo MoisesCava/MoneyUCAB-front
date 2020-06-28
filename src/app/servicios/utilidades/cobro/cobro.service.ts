@@ -25,6 +25,19 @@ export class CobroService {
     return this.http.get('http://localhost:5000/api/dashboard/cobrosactivos', {params: param, headers: header})
   }
 
+  cobrosCancelados(){
+    let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    let param = new HttpParams().set('idUsuario', localStorage.getItem('idUsuario'))
+    .set('solicitante', localStorage.getItem('idUsuario'))
+    return this.http.get('http://localhost:5000/api/dashboard/CobrosCancelados', {params: param, headers: header})
+  }
+
+  cobrosExitosos(){
+    let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    let param = new HttpParams().set('idUsuario', localStorage.getItem('idUsuario'))
+    .set('solicitante', localStorage.getItem('idUsuario'))
+    return this.http.get('http://localhost:5000/api/dashboard/CobrosExitosos', {params: param, headers: header})
+  }
 
 
 
@@ -60,14 +73,6 @@ export class CobroService {
     return this.http
     .post('http://localhost:5000/api/Transfer/CancelarCobro',null, options)
   }
-
-
-
-
-
-
-
-
 
 
   realizarCobro(){

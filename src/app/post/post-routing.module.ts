@@ -17,10 +17,6 @@ const routes: Routes = [
     loadChildren: () => import('./cierre/cierre.module').then( m => m.CierrePageModule)
   },
   {
-    path: 'historial',
-    loadChildren: () => import('./historial/historial.module').then( m => m.HistorialPageModule)
-  },
-  {
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
@@ -35,7 +31,15 @@ const routes: Routes = [
   {
     path: 'cobros',
     loadChildren: () => import('./cobros/cobros.module').then( m => m.CobrosPageModule)
+  },  {
+    path: 'tarjeta-reintegro',
+    loadChildren: () => import('./tarjeta-reintegro/tarjeta-reintegro.module').then( m => m.TarjetaReintegroPageModule)
+  },
+  {
+    path: 'cuenta-reintegro',
+    loadChildren: () => import('./cuenta-reintegro/cuenta-reintegro.module').then( m => m.CuentaReintegroPageModule)
   }
+
 ];
 
 @NgModule({

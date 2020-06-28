@@ -16,10 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'historial',
-    loadChildren: () => import('./post/historial/historial.module').then( m => m.HistorialPageModule)
-  },
-  {
     path: 'solicitar-pago',
     loadChildren: () => import('./post/solicitar-pago/solicitar-pago.module').then( m => m.SolicitarPagoPageModule)
   },
@@ -46,6 +42,14 @@ const routes: Routes = [
   {
     path: 'cobros',
     loadChildren: () => import('./post/cobros/cobros.module').then( m => m.CobrosPageModule)
+  },
+  {
+    path: 'tarjeta-reintegro',
+    loadChildren: () => import('./post/tarjeta-reintegro/tarjeta-reintegro.module').then( m => m.TarjetaReintegroPageModule)
+  },
+  {
+    path: 'cuenta-reintegro',
+    loadChildren: () => import('./post/cuenta-reintegro/cuenta-reintegro.module').then( m => m.CuentaReintegroPageModule)
   }
 ];
 

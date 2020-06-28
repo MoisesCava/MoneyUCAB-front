@@ -14,6 +14,10 @@ export class CobrosPage implements OnInit {
 
   cobrosActivos: CobroActivo[] = [];
 
+  cobrosCancelados: CobroActivo[] = [];
+
+  cobrosExitosos: CobroActivo[] = [];
+
   constructor(private cobroservice: CobroService, 
     private activatedRoute: ActivatedRoute, 
     private router: Router,
@@ -25,6 +29,18 @@ export class CobrosPage implements OnInit {
     this.cobroservice.cobrosActivos().subscribe(
       (data: any) =>{
         this.cobrosActivos = data;
+      }
+    );
+
+    this.cobroservice.cobrosCancelados().subscribe(
+      (data: any) =>{
+        this.cobrosCancelados = data;
+      }
+    );
+
+    this.cobroservice.cobrosExitosos().subscribe(
+      (data: any) =>{
+        this.cobrosExitosos = data;
       }
     );
   }

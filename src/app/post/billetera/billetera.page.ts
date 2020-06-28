@@ -30,7 +30,7 @@ export class BilleteraPage implements OnInit {
     );
     this.cuentaService.obtenerCuentas().subscribe(
       (data: any) =>{
-        this.cuentas = data.result;
+        this.cuentas = data;
         console.log(data);
       }
     );

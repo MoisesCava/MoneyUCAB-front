@@ -32,5 +32,44 @@
         </ion-button>
       </ion-item>
     </ion-card> 
+
+    <ion-card >
+      <ion-card-header>
+        <ion-card-title>
+          <h1>Cobros Cancelados:</h1>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-item *ngFor="let cobrocancelado of cobrosCancelados" >
+        <ion-icon slot="start" name="close-outline">
+        </ion-icon>
+        <ion-label>
+          Fecha: {{cobrocancelado.fecha.day}}/{{cobrocancelado.fecha.month}}/{{cobrocancelado.fecha.year}}
+        </ion-label>
+        <br>
+        <ion-label>
+          Monto: {{cobrocancelado.monto}}
+        </ion-label>
+      </ion-item>
+    </ion-card>
+
+    <ion-card >
+      <ion-card-header>
+        <ion-card-title>
+          <h1>Cobros Exitosos:</h1>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-item *ngFor="let cobroexitoso of cobrosExitosos" >
+        <ion-icon slot="start" name="checkmark-outline">
+        </ion-icon>
+        <ion-label>
+          Fecha: {{cobroexitoso.fecha.day}}/{{cobroexitoso.fecha.month}}/{{cobroexitoso.fecha.year}}
+        </ion-label>
+        <br>
+        <ion-label>
+          Monto: {{cobroexitoso.monto}}
+        </ion-label>
+      </ion-item>
+    </ion-card>
+
   </ion-list>
 </ion-content>
