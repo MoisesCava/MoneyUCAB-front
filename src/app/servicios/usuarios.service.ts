@@ -10,25 +10,23 @@ export class UsuariosService {
 
   constructor(private http: HttpClient, private form: FormBuilder) { }
 
-  formModel = this.form.group({
-    usuario : ['', Validators.required],
-    email : ['', [Validators.required, Validators.email]],
+  usuarioModel = this.form.group({
+    nombre : ['', Validators.required],
+    apellido : ['', Validators.required],
     telefono : ['', Validators.required],
     direccion : ['', Validators.required],
-    idUsuario : [0, Validators.required]
+    razonSocial : ['', Validators.required],
+    idEstadoCivil : [0, Validators.required],
+    idUsuario : [0 , Validators.required]
   });
 
-  /*
-        usuario: '',
-      email : '',
-      telefono : '',
-      direccion: '',
-      idUsuario: 0
-  */ 
+  
 
 
-
-
+  estadosCiviles(){
+    let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get('http://localhost:5000/api/Dashboard/EstadosCiviles', {headers: header})
+  }
 
   getDatosUsuario(){
     let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
@@ -49,13 +47,25 @@ export class UsuariosService {
   modificarUsaurio(){
     let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
     var body = {
-      usuario: localStorage.getItem('usuario'),
-      email : localStorage.getItem('email'),
-      telefono : this.formModel.value.telefono,
-      direccion: this.formModel.value.direccion,
+      nombre : this.usuarioModel.value.nombre,
+      apellido : this.usuarioModel.value.apellido,
+      telefono : this.usuarioModel.value.telefono,
+      direccion : this.usuarioModel.value.direccion,
+      razonSocial : this.usuarioModel.value.razonSocial,
+      idEstadoCivil : Number(this.usuarioModel.value.idEstadoCivil),
       idUsuario: parseInt(localStorage.getItem('idUsuario'))
     };
     return this.http.post('http://localhost:5000/api/Authentication/Modification', body , {headers: header});
+  }
+
+  ejecutarCierre(){
+    
+    let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    let param = new HttpParams().set('IdUsuario', localStorage.getItem('idUsuario'));
+    let url = "http://localhost:5000/api/HistorialOperaciones/Ejecutarcierre";
+  
+
+    return this.http.get(url, {params: param, headers: header});
   }
 
 }

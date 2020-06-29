@@ -24,6 +24,7 @@ export class PostPage implements OnInit {
     (
       data =>
       {
+        console.log(data);
         this.saldo = data;
       },
       err => {

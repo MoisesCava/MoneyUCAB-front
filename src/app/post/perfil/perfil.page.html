@@ -12,22 +12,42 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      <form [formGroup]="usuarioService.formModel"  autocomplete="off" (submit)="onSubmit()">
+      <form [formGroup]="usuarioService.usuarioModel"  autocomplete="off" (submit)="onSubmit()">
         <ion-list lines="full">
+          
+          <ion-item class="margin-top-5">
+            <ion-label position="fixed">Nombre</ion-label>
+            <ion-input formControlName="nombre" name="nombre" ></ion-input>
+          </ion-item>
 
-            <ion-input class="ion-hide" formControlName="usuario" name="nombre" > </ion-input>
-
-
-            <ion-input class="ion-hide" formControlName="email" name="email"></ion-input>
+          <ion-item class="margin-top-5">
+            <ion-label position="fixed">Apellido</ion-label>
+            <ion-input formControlName="apellido" name="apellido" ></ion-input>
+          </ion-item>
 
           <ion-item class="margin-top-5">
             <ion-label position="fixed">Teléfono</ion-label>
-            <ion-input formControlName="telefono" [(ngModel)]="formModel.telefono" name="telefono" placeholder="{{formModel.telefono}}" ></ion-input>
+            <ion-input formControlName="telefono" name="telefono"  ></ion-input>
           </ion-item>
+
           <ion-item class="margin-top-5">
             <ion-label position="fixed">Dirección</ion-label>
-            <ion-input formControlName="direccion" [(ngModel)]="formModel.direccion" name="direccion" placeholder="{{formModel.direccion}}"></ion-input>
+            <ion-input formControlName="direccion" name="direccion" ></ion-input>
           </ion-item>
+
+          <ion-item class="margin-top-5">
+            <ion-label position="fixed">Razón social</ion-label>
+            <ion-input formControlName="razonSocial" name="razonSocial" placeholder=""></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Estado Civil</ion-label>
+            <ion-select formControlName="idEstadoCivil" name="idEstadoCivil" ok-text="Aceptar" cancel-text="cancelar">
+              <ion-select-option   value="1">C</ion-select-option>
+              <ion-select-option   value="2">S</ion-select-option>
+            </ion-select>
+          </ion-item>
+
           <ion-input class="ion-hide" formControlName="idUsuario" name="idUsuario"></ion-input>
         </ion-list>
         <ion-button type="submit" color="light_violet" 

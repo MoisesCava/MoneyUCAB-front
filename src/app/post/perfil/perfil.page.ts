@@ -4,6 +4,7 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Usuario } from "../../models/usuario.model";
+import { EstadoCivil } from 'src/app/models/estadoCivil.model';
 
 @Component({
   selector: 'app-perfil',
@@ -12,45 +13,45 @@ import { Usuario } from "../../models/usuario.model";
 })
 export class PerfilPage implements OnInit {
 
+  usuario: Usuario;
+
+  estadoCiviles: EstadoCivil[] = [];
+
   constructor(private usuarioService : UsuariosService, 
     public toastController : ToastController, 
     private loadingController: LoadingController,
     private router: Router) { }
 
-    formModel = {
-      usuario: '',
-      email : '',
-      telefono : '',
-      direccion: '',
-      idUsuario: 0
-    }
-
-
-    /*
-    this.id = data;
-        this.formModel.idUsuario = this.id.idUsuario;
-        console.log(this.formModel.idUsuario);
-    */
-
   ngOnInit() {
 
-    this.usuarioService.formModel.reset();
-    this.formModel.usuario = localStorage.getItem('usuario');
-    this.formModel.email = localStorage.getItem('email');
-    this.formModel.telefono = localStorage.getItem('telefono');
-    this.formModel.direccion = localStorage.getItem('direccion');
-    console.log(localStorage.getItem('usuario'));
-    console.log(localStorage.getItem('email'));
-    console.log(localStorage.getItem('telefono'));
-    console.log(localStorage.getItem('direccion'));
+    this.usuarioService.estadosCiviles().subscribe(
+      (data:any) =>{
+        this.estadoCiviles = data;
+      }
+    );
+
+    this.usuarioService.getDatosUsuario().subscribe(
+      (data: any) => {
+        console.log(data.persona.nombre);
+        console.log(data.persona.apellido);
+        console.log(data.result.telefono);
+        console.log(data.result.direccion);
+        console.log(data.comercio.razonSocial);
+        console.log(data.estadoCivil.idEstadoCivil);
+        /*this.usuario.nombre = data.persona.nombre;
+        this.usuario.apellido = data.persona.apellido;
+        this.usuario.telefono = data.result.telefono;
+        this.usuario.direccion = data.result.direccion;
+        this.usuario.razonSocial = data.comercio.razonSocial;
+        this.usuario.idEstadoCivil = data.estadoCivil.idEstadoCivil;
+        console.log(this.usuario);*/
+      }
+    );
+
   }
 
   ionViewWillEnter(){
-    this.usuarioService.formModel.reset();
-    this.formModel.usuario = localStorage.getItem('usuario');
-    this.formModel.email = localStorage.getItem('email');
-    this.formModel.telefono = localStorage.getItem('telefono');
-    this.formModel.direccion = localStorage.getItem('direccion');
+
   }
 
   async presentToast(color : string, mensaje : string) {

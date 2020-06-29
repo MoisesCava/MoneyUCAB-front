@@ -15,7 +15,6 @@
     <ion-card-subtitle class="titular" color="ublue">Titular de la cuenta</ion-card-subtitle>   
   </ion-card>
 
-  <ion-searchbar (ionInput)="handleInput($event)"></ion-searchbar>
     
   <ion-list>
     <ion-card *ngFor="let order of orders" [routerLink]="['/payment-order', order.id]">
@@ -30,12 +29,6 @@
       </ion-item>
     </ion-card> 
   </ion-list>
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button color ="uyellow" (click)="addNewOrder()">
-      <ion-icon name="add" color="light"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
 </ion-content>
 
 

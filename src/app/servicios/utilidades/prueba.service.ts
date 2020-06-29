@@ -66,14 +66,9 @@ export class PaymentOrderService {
   saldoActual(){
     
     let header = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
-    let param = new HttpParams().set('id', localStorage.getItem('idUsuario'));
+    let param = new HttpParams().set('IdUsuario', localStorage.getItem('idUsuario'));
     let url = "http://localhost:5000/api/monedero/Consultar";
-    
-    this.http.get(url, {params: param, headers: header})
-    .toPromise()
-    .then((data : any) => {
-      console.log(localStorage.getItem('token'));
-    })
+  
 
     return this.http.get(url, {params: param, headers: header});
   }

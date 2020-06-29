@@ -3,6 +3,10 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { UsuariosService } from './servicios/usuarios.service';
+import { ToastController, LoadingController } from '@ionic/angular';
+import { AlertController } from "@ionic/angular";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +17,23 @@ export class AppComponent {
 
   navigate : any;
 
+  monto: number;
+  referencia: string;
+  dia: number;
+  mes: number;
+  año: number;
+
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private usuarioService: UsuariosService,
+    public toastController : ToastController, 
+    private loadingController: LoadingController,
+    private alertController: AlertController,
+    private router: Router
+    
   ) {
     this.sideMenu();
     this.initializeApp();
@@ -39,25 +56,85 @@ export class AppComponent {
         icon  : "list-outline"
       },
       {
-        title : "Aprobar reintegros",
+        title : "Reintegros",
         url   : "/aprobar-reintegro",
         icon  : "reload-outline"
       },
       {
-        title : "Solicitar pago",
+        title : "Realizar cobro",
         url   : "/solicitar-pago",
         icon  : "cash-outline"
       },
       {
-        title : "Cierre de caja",
-        url   : "/cierre",
-        icon  : "bar-chart-outline"
+        title : "Billetera",
+        url   : "/billetera",
+        icon  : "wallet-outline"
       },
       {
         title : "Perfil",
         url   : "/perfil",
         icon  : "person-outline"
-      },
+      }
+
     ]
+  }
+
+  async presentToast(color : string, mensaje : string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      color : color,
+      buttons: [ 
+        {
+          icon: 'close',
+          role: 'cancel'
+        }
+      ]
+    });
+    toast.present();
+  }
+  
+  async successToast(color : string, mensaje : string) {
+    const success = await this.toastController.create({
+      message: mensaje,
+      color : color,
+      buttons: [ 
+        {
+          icon: 'close',
+          role: 'cancel'
+        }
+      ]
+    });
+    success.present();
+  }
+
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      spinner: "bubbles",
+      duration: 100000,
+      message: 'Cargando ...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading',
+    });
+    loading.present();
+  }
+
+  async ejecutarCierre(){
+    this.usuarioService.ejecutarCierre().subscribe(
+      (data: any) => {
+        this.monto = data.monto;
+        this.dia = data.fecha.dia;
+        this.mes = data.fecha.mes;
+        this.año = data.fecha.año;
+        this.referencia = data.referencia;
+      }
+    )
+    const alert = await this.alertController.create({
+      header: 'Monto: '+ Number(this.monto),
+      subHeader: 'Fecha: '+ Number(this.dia)+'/'+Number(this.mes)+'/'+Number(this.año),
+      message: 'Referencia: '+ this.referencia,
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 }
