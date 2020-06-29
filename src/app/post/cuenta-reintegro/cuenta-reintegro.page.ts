@@ -79,7 +79,7 @@ export class CuentaReintegroPage implements OnInit {
         console.log(res);
         this.successToast('success', 'Reintegro procesado satisfactoriamente')
 
-        this.router.navigateByUrl('/post/aprobar-reintegro');
+        this.router.navigateByUrl('/post');
       },
       err => {
         this.loadingController.dismiss();

@@ -47,8 +47,26 @@ export class AprobarReintegroPage implements OnInit {
         this.reintegrosExitosos = data;
       }
     );
+  }
 
+  ionViewWillEnter(){
+    this.reintegroService.reintegrosActivos().subscribe(
+      (data: any) =>{
+        this.reintegrosActivos = data;
+      }
+    );
 
+    this.reintegroService.reintegrosCancelados().subscribe(
+      (data: any) =>{
+        this.reintegrosCancelados = data;
+      }
+    );
+
+    this.reintegroService.reintegrosExitosos().subscribe(
+      (data: any) =>{
+        this.reintegrosExitosos = data;
+      }
+    );
   }
 
   async presentToast(color : string, mensaje : string) {

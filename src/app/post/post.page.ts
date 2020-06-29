@@ -3,6 +3,8 @@ import { PaymentOrderService } from "../servicios/utilidades/prueba.service";
 import { Router } from "@angular/router";
 import { Saldo } from "../interfaces/saldo.model";
 import { UsuariosService } from '../servicios/usuarios.service';
+import { CobroService } from '../servicios/utilidades/cobro/cobro.service';
+import { CobroActivo } from '../models/cobroActivo.model';
 
 @Component({
   selector: 'app-post',
@@ -14,11 +16,21 @@ export class PostPage implements OnInit {
 
   orders = []
   saldo: any;
+  cobrosActivos: CobroActivo[] = [];
+  nombre =  localStorage.getItem('nombreU');
+  apellido = localStorage.getItem('apellido');
 
-
-  constructor(private orderService: PaymentOrderService, private router: Router, private usuarioService: UsuariosService) {}
+  constructor(private orderService: PaymentOrderService, 
+    private router: Router, 
+    private usuarioService: UsuariosService,
+    private cobroservice: CobroService) {}
 
   ngOnInit() {
+    this.cobroservice.cobrosActivos().subscribe(
+      (data: any) =>{
+        this.cobrosActivos = data;
+      }
+    );
     this.orderService.saldoActual()
     .subscribe
     (
@@ -38,8 +50,8 @@ export class PostPage implements OnInit {
       {
         localStorage.setItem('idUsuario', data.result.idUsuario);
         localStorage.setItem('usuario', data.result.usuario);
-        localStorage.setItem('telefono', data.result.telefono);
-        localStorage.setItem('direccion', data.result.direccion);
+        localStorage.setItem('nombreU', data.persona.nombre);
+        localStorage.setItem('apellido', data.persona.apellido);
         console.log('El id de usuario es:', localStorage.getItem('idUsuario') )
         console.log('El nombre es:', localStorage.getItem('usuario') )
         console.log('El telefono es:', localStorage.getItem('telefono') )
@@ -53,7 +65,11 @@ export class PostPage implements OnInit {
   }
 
   ionViewWillEnter(){
-
+    this.cobroservice.cobrosActivos().subscribe(
+      (data: any) =>{
+        this.cobrosActivos = data;
+      }
+    );
   }
 
   

@@ -12,7 +12,7 @@
   <ion-card> 
     <ion-card-subtitle class="ion-text-left" class="saldo_disponible">Saldo disponible</ion-card-subtitle>
     <ion-card-title  class="saldo">{{saldo}}<ion-icon name="logo-usd" class="money_icon"></ion-icon></ion-card-title>
-    <ion-card-subtitle class="titular" color="ublue">Titular de la cuenta</ion-card-subtitle>   
+    <ion-card-subtitle class="titular" color="ublue">{{nombre}}&nbsp;{{apellido}}</ion-card-subtitle>   
   </ion-card>
 
     
@@ -26,6 +26,35 @@
           <ion-card-subtitle>{{order.nombre_titular}}</ion-card-subtitle>
           <ion-card-title>{{order.monto}}</ion-card-title>
         </ion-card-header>
+      </ion-item>
+    </ion-card> 
+  </ion-list>
+
+  <ion-list>
+    <ion-card >
+      <ion-card-header>
+        <ion-card-title>
+          <h1>Cobros Activos:</h1>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-item *ngFor="let cobroactivo of cobrosActivos" >
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col>
+              <ion-icon slot="start" name="flag-outline"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col >
+                  Fecha: {{cobroactivo.fecha.day}}/{{cobroactivo.fecha.month}}/{{cobroactivo.fecha.year}} 
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col >
+                  Monto: {{cobroactivo.monto}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
     </ion-card> 
   </ion-list>

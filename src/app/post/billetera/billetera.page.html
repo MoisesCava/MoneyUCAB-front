@@ -1,44 +1,175 @@
 <ion-header>
-  <ion-toolbar color="ugreen">
+  <ion-toolbar color="primary">
 
     <ion-buttons slot="start" >
       <ion-back-button color="light" defaultHref="/post" ></ion-back-button>
     </ion-buttons>
 
-    <ion-title color="light">Historial de Cobros</ion-title>
+    <ion-title color="light">Tarjetas y cuentas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-card >
-      <ion-card-header>
-        <ion-card-title>
-          <h1>Tarjetas registradas: </h1>
-        </ion-card-title>
-      </ion-card-header>
-      <ion-item *ngFor="let tarjeta of tarjetas" >
-        <ion-icon slot="start" name="card-outline">
-        </ion-icon>
-        <ion-label>
-          Tarjeta: {{tarjeta.numero}}
-        </ion-label>
-      </ion-item>
-    </ion-card> 
-  
-    <ion-card >
-      <ion-card-header>
-        <ion-card-title>
-          <h1>Cuentas registradas: </h1>
-        </ion-card-title>
-      </ion-card-header>
-      <ion-item *ngFor="let cuenta of cuentas">
-        <ion-icon slot="start" name="journal-outline">
-        </ion-icon>
-        <ion-label>
-          Cuenta: {{cuenta._numero}}
-        </ion-label>
-      </ion-item>
-    </ion-card> 
-  </ion-list>
+<ion-content class="ion-padding">
+
+  <div *ngFor="let tarjeta of tarjetas">
+    <ion-grid [class.cardON]="tarjeta.estatus" >
+      <ion-row>
+        <ion-col class="state">
+          <div class="msg">
+            <span [class.ON]="tarjeta.estatus" ></span> Tarjeta Activa 
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="chip">
+          <img src="../../../assets/img/chip.png">
+        </ion-col>
+        <ion-col >
+          <div class="nombre">
+            {{nombre}}&nbsp;{{apellido}}
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="digits">
+        <ion-col class="number">
+          {{tarjeta.numero}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="date">
+          EXP : {{tarjeta.fechaVencimiento.day}}/{{tarjeta.fechaVencimiento.year}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <div *ngFor="let cuenta of cuentas">
+    <ion-grid [class.cardONC]="cuenta._idCuenta" >
+      <ion-row>
+        <ion-col class="state">
+          <div class="msg">
+            <span [class.ON]="cuenta._idCuenta" ></span> Cuenta Activa 
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col >
+          <div class="nombrec">
+            {{nombre}}&nbsp;{{apellido}}
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="digitsc">
+        <ion-col class="numberc">
+          {{cuenta._numero}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
+
+<style>
+    ion-content {
+        background-color: #ebbc3d !important;
+    }
+    ion-grid.cardON {
+        background-color: #4284ff;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 15px;
+        max-width: 400px !important;
+
+    }
+    ion-grid.cardONC {
+        background-color: #6a6f79;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 15px;
+        max-width: 400px !important;
+
+    }
+    ion-grid.cardOFF {
+        background-color: #333333;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 15px;
+        max-width: 400px !important;
+
+    }
+    .nombrec{
+        color: white;
+        font-size: 1.2em;
+        line-height: 2em;
+        text-align: center;
+    }
+    .nombre{
+        color: white;
+        font-size: 1.2em;
+        line-height: 2em;
+        text-align: right;
+    }
+    .msg {
+        float: left;
+        padding: 5px;
+        padding-right: 8px;
+        padding-left: 8px;
+        font-size: 0.8em;
+        color: white;
+        border-radius: 5px;
+    }
+    .numberc {
+        color: white;
+        font-size: 1.5em;
+        line-height: 2em;
+        text-align: center;
+    }
+    .number {
+        color: white;
+        font-size: 1.5em;
+        line-height: 2em;
+        text-align: center;
+    }
+    .digits {
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+    .date {
+        color: white;
+        font-size: 0.8em;
+    }
+    .bank {
+        text-align: right;
+        color: white;
+        font-size: 0.8em;
+    }
+    .brand {
+        max-width: 40%;
+        float: right;
+    }
+    .ON {
+        height: 8px;
+        width: 8px;
+        background-color: #8de278;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 2px;
+    }
+    .OFF {
+        height: 8px;
+        width: 8px;
+        background-color: #fb5f5f;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 2px;
+    }
+    .chip {
+    
+      max-width: 50px;
+      padding-top: 5%;
+      border-radius: 10% !important;
+      overflow: hidden;
+    
+    }
+
+</style>

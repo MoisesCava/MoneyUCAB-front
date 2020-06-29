@@ -18,24 +18,36 @@
         </ion-card-title>
       </ion-card-header>
       <ion-item *ngFor="let reintegroactivo of reintegrosActivos">
-        <ion-icon slot="start" name="flag-outline">
-        </ion-icon>
-        <ion-label>
-          Fecha: {{reintegroactivo.fecha.day}}/{{reintegroactivo.fecha.month}}/{{reintegroactivo.fecha.year}}
-        </ion-label>
-        <br>
-        <ion-label>
-          Motivo: {{reintegroactivo.referencia}}
-        </ion-label>
-        <ion-button fill="clear" (click)="pagoTarjeta(reintegroactivo)">
-          <ion-icon slot="end" color="success" name="card-outline"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" (click)="pagoCuenta(reintegroactivo)">
-          <ion-icon slot="end" color="warning" name="journal-outline"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" (click)="onClick(reintegroactivo.idReintegro)">
-          <ion-icon slot="end" color="danger" name="close-circle-outline"></ion-icon>
-        </ion-button>
+        <ion-icon slot="start" name="flag-outline">        </ion-icon>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col>
+              Fecha: {{reintegroactivo.fecha.day}}/{{reintegroactivo.fecha.month}}/{{reintegroactivo.fecha.year}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              Motivo: {{reintegroactivo.referencia}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4">
+              <ion-button fill="clear" (click)="pagoTarjeta(reintegroactivo)">
+                <ion-icon slot="end" color="success" name="card-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button fill="clear" (click)="pagoCuenta(reintegroactivo)">
+                <ion-icon slot="end" color="warning" name="journal-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button fill="clear" (click)="onClick(reintegroactivo.idReintegro)">
+                <ion-icon slot="end" color="danger" name="close-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
     </ion-card> 
 
@@ -46,15 +58,19 @@
         </ion-card-title>
       </ion-card-header>
       <ion-item *ngFor="let reintegrocancelado of reintegrosCancelados" >
-        <ion-icon slot="start" name="close-outline">
-        </ion-icon>
-        <ion-label>
-          Fecha: {{reintegrocancelado.fecha.day}}/{{reintegrocancelado.fecha.month}}/{{reintegrocancelado.fecha.year}}
-        </ion-label>
-        <br>
-        <ion-label>
-          Motivo: {{reintegrocancelado.referencia}}
-        </ion-label>
+        <ion-icon slot="start" name="close-outline"></ion-icon>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col>
+              Fecha: {{reintegrocancelado.fecha.day}}/{{reintegrocancelado.fecha.month}}/{{reintegrocancelado.fecha.year}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              Motivo: {{reintegrocancelado.referencia}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
     </ion-card> 
 
@@ -65,17 +81,20 @@
         </ion-card-title>
       </ion-card-header>
       <ion-item *ngFor="let reintegrosexitoso of reintegrosExitosos" >
-        <ion-icon slot="start" name="checkmark-outline">
-        </ion-icon>
-        <ion-label>
-          Fecha: {{reintegrosexitoso.fecha.day}}/{{reintegrosexitoso.fecha.month}}/{{reintegrosexitoso.fecha.year}}
-        </ion-label>
-        <br>
-        <ion-label>
-          Motivo: {{reintegrosexitoso.referencia}}
-        </ion-label>
+        <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              Fecha: {{reintegrosexitoso.fecha.day}}/{{reintegrosexitoso.fecha.month}}/{{reintegrosexitoso.fecha.year}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              Motivo: {{reintegrosexitoso.referencia}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
     </ion-card> 
-
   </ion-list>
 </ion-content>

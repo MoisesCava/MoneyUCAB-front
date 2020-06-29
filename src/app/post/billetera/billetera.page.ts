@@ -14,15 +14,17 @@ export class BilleteraPage implements OnInit {
 
   cuentas: Cuenta[] = [];
   tarjetas: Tarjeta[]= [];
-
-  //[routerLink]="['/payment-order', order.id]"
+  nombre =  localStorage.getItem('nombreU');
+  apellido = localStorage.getItem('apellido');
+  banco: {} = {};
+  
 
   constructor(private tarjetaService: TarjetaService, 
     private cuentaService: CuentaService,
     private router: Router) { }
 
   ngOnInit() {
-    
+    console.log(localStorage.getItem('nombreU'))
     this.tarjetaService.obtenerTarjetas().subscribe(
       (data: any) =>{
         this.tarjetas = data;
@@ -30,6 +32,7 @@ export class BilleteraPage implements OnInit {
     );
     this.cuentaService.obtenerCuentas().subscribe(
       (data: any) =>{
+        this.banco = data;
         this.cuentas = data;
         console.log(data);
       }

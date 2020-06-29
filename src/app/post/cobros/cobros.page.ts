@@ -51,6 +51,17 @@ export class CobrosPage implements OnInit {
         this.cobrosActivos = data;
       }
     );
+    this.cobroservice.cobrosCancelados().subscribe(
+      (data: any) =>{
+        this.cobrosCancelados = data;
+      }
+    );
+
+    this.cobroservice.cobrosExitosos().subscribe(
+      (data: any) =>{
+        this.cobrosExitosos = data;
+      }
+    );
   }
 
   async presentToast(color : string, mensaje : string) {
