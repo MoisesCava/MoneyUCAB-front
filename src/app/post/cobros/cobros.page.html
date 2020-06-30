@@ -18,17 +18,22 @@
         </ion-card-title>
       </ion-card-header>
       <ion-item *ngFor="let cobroactivo of cobrosActivos" >
-        <ion-icon slot="start" name="flag-outline">
+        <ion-icon slot="start"  color="warning" name="flag-outline">
         </ion-icon>
-        <ion-label>
-          Fecha: {{cobroactivo.fecha.day}}/{{cobroactivo.fecha.month}}/{{cobroactivo.fecha.year}}
-        </ion-label>
-        <br>
-        <ion-label>
-          Monto: {{cobroactivo.monto}}
-        </ion-label>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col>
+              Fecha: {{cobroactivo.fecha.day}}/{{cobroactivo.fecha.month}}/{{cobroactivo.fecha.year}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              Monto: {{cobroactivo.monto}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         <ion-button fill="clear" (click)="onClick(cobroactivo.idPago)">
-          <ion-icon slot="end" color="danger" name="close-circle-outline"></ion-icon>
+          <ion-icon slot="end" color="danger" class="cancelar" name="close-circle-outline"></ion-icon>
         </ion-button>
       </ion-item>
     </ion-card> 
@@ -40,15 +45,20 @@
         </ion-card-title>
       </ion-card-header>
       <ion-item *ngFor="let cobrocancelado of cobrosCancelados" >
-        <ion-icon slot="start" name="close-outline">
+        <ion-icon slot="start" color="danger" name="close-outline">
         </ion-icon>
-        <ion-label>
-          Fecha: {{cobrocancelado.fecha.day}}/{{cobrocancelado.fecha.month}}/{{cobrocancelado.fecha.year}}
-        </ion-label>
-        <br>
-        <ion-label>
-          Monto: {{cobrocancelado.monto}}
-        </ion-label>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col >
+              Fecha: {{cobrocancelado.fecha.day}}/{{cobrocancelado.fecha.month}}/{{cobrocancelado.fecha.year}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col >
+              Monto: {{cobrocancelado.monto}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
     </ion-card>
 
@@ -59,17 +69,28 @@
         </ion-card-title>
       </ion-card-header>
       <ion-item *ngFor="let cobroexitoso of cobrosExitosos" >
-        <ion-icon slot="start" name="checkmark-outline">
+        <ion-icon slot="start" color="success" name="checkmark-outline">
         </ion-icon>
-        <ion-label>
-          Fecha: {{cobroexitoso.fecha.day}}/{{cobroexitoso.fecha.month}}/{{cobroexitoso.fecha.year}}
-        </ion-label>
-        <br>
-        <ion-label>
-          Monto: {{cobroexitoso.monto}}
-        </ion-label>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col >
+              Fecha: {{cobroexitoso.fecha.day}}/{{cobroexitoso.fecha.month}}/{{cobroexitoso.fecha.year}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col >
+              Monto: {{cobroexitoso.monto}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
     </ion-card>
 
   </ion-list>
 </ion-content>
+
+<style>
+  .cancelar{
+    font-size: 30px;
+  }
+</style>

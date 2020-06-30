@@ -17,27 +17,27 @@
           
           <ion-item class="margin-top-5">
             <ion-label position="fixed">Nombre</ion-label>
-            <ion-input formControlName="nombre" name="nombre" ></ion-input>
+            <ion-input formControlName="nombre" name="nombre" placeholder="{{nombre}}"></ion-input>
           </ion-item>
 
           <ion-item class="margin-top-5">
             <ion-label position="fixed">Apellido</ion-label>
-            <ion-input formControlName="apellido" name="apellido" ></ion-input>
+            <ion-input formControlName="apellido" name="apellido" placeholder="{{apellido}}"></ion-input>
           </ion-item>
 
           <ion-item class="margin-top-5">
             <ion-label position="fixed">Teléfono</ion-label>
-            <ion-input formControlName="telefono" name="telefono"  ></ion-input>
+            <ion-input formControlName="telefono" name="telefono" placeholder="{{telefono}}"></ion-input>
           </ion-item>
 
           <ion-item class="margin-top-5">
             <ion-label position="fixed">Dirección</ion-label>
-            <ion-input formControlName="direccion" name="direccion" ></ion-input>
+            <ion-input formControlName="direccion" name="direccion" placeholder="{{direccion}}"></ion-input>
           </ion-item>
 
           <ion-item class="margin-top-5">
             <ion-label position="fixed">Razón social</ion-label>
-            <ion-input formControlName="razonSocial" name="razonSocial" placeholder=""></ion-input>
+            <ion-input formControlName="razonSocial" name="razonSocial" placeholder="{{razonsocial}}"></ion-input>
           </ion-item>
 
           <ion-item>
@@ -50,8 +50,8 @@
 
           <ion-input class="ion-hide" formControlName="idUsuario" name="idUsuario"></ion-input>
         </ion-list>
-        <ion-button type="submit" color="light_violet" 
-        expand="block" fill="outline" id="button-guardar" 
+        <ion-button type="submit" color="primary" 
+        expand="block"  id="button-guardar" 
         class="margin-top-40" >Guardar</ion-button>
       </form>
     </ion-card-content>

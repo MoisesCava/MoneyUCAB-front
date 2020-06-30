@@ -52,11 +52,6 @@ export class PostPage implements OnInit {
         localStorage.setItem('usuario', data.result.usuario);
         localStorage.setItem('nombreU', data.persona.nombre);
         localStorage.setItem('apellido', data.persona.apellido);
-        console.log('El id de usuario es:', localStorage.getItem('idUsuario') )
-        console.log('El nombre es:', localStorage.getItem('usuario') )
-        console.log('El telefono es:', localStorage.getItem('telefono') )
-        console.log('La direccion es:', localStorage.getItem('direccion') )
-        console.log(data);
         },
         err => {
           console.log(err.message);

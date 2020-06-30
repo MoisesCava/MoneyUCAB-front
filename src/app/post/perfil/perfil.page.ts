@@ -13,9 +13,26 @@ import { EstadoCivil } from 'src/app/models/estadoCivil.model';
 })
 export class PerfilPage implements OnInit {
 
-  usuario: Usuario;
+  usuario: any;
 
   estadoCiviles: EstadoCivil[] = [];
+
+  nombre: string;
+  apellido: string;
+  telefono: string;
+  direccion: string;
+  razonsocial: string;
+
+  /**
+   * 
+   * data.persona.nombre;
+        this.usuario.apellido = data.persona.apellido;
+        this.usuario.telefono = data.result.telefono;
+        this.usuario.direccion = data.result.direccion;
+        this.usuario.razonSocial = data.comercio.razonSocial;
+        this.usuario.idEstadoCivil = data.estadoCivil.idEstadoCivil;
+   * 
+   */
 
   constructor(private usuarioService : UsuariosService, 
     public toastController : ToastController, 
@@ -32,19 +49,19 @@ export class PerfilPage implements OnInit {
 
     this.usuarioService.getDatosUsuario().subscribe(
       (data: any) => {
-        console.log(data.persona.nombre);
-        console.log(data.persona.apellido);
-        console.log(data.result.telefono);
-        console.log(data.result.direccion);
-        console.log(data.comercio.razonSocial);
-        console.log(data.estadoCivil.idEstadoCivil);
-        /*this.usuario.nombre = data.persona.nombre;
-        this.usuario.apellido = data.persona.apellido;
-        this.usuario.telefono = data.result.telefono;
-        this.usuario.direccion = data.result.direccion;
-        this.usuario.razonSocial = data.comercio.razonSocial;
-        this.usuario.idEstadoCivil = data.estadoCivil.idEstadoCivil;
-        console.log(this.usuario);*/
+
+        localStorage.setItem('name', data.persona.nombre);
+        localStorage.setItem('apellido', data.persona.apellido);
+        localStorage.setItem('telefono', data.result.telefono);
+        localStorage.setItem('direccion', data.result.direccion);
+        localStorage.setItem('razonsocial', data.comercio.razonSocial);
+
+        this.nombre = localStorage.getItem('name');
+        this.apellido = localStorage.getItem('apellido');
+        this.telefono = localStorage.getItem('telefono');
+        this.direccion = localStorage.getItem('direccion');
+        this.razonsocial = localStorage.getItem('razonsocial');
+        
       }
     );
 

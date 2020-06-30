@@ -5,7 +5,7 @@
       <ion-back-button color="light" defaultHref="/post" ></ion-back-button>
     </ion-buttons>
 
-    <ion-title color="light">Historial de Cobros</ion-title>
+    <ion-title color="light">Historial de reintegros</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,7 +18,7 @@
         </ion-card-title>
       </ion-card-header>
       <ion-item *ngFor="let reintegroactivo of reintegrosActivos">
-        <ion-icon slot="start" name="flag-outline">        </ion-icon>
+        <ion-icon slot="start" color="tertiary" name="flag-outline">        </ion-icon>
         <ion-grid fixed>
           <ion-row>
             <ion-col>
@@ -27,23 +27,23 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              Motivo: {{reintegroactivo.referencia}}
+              Refrencia: {{reintegroactivo.referencia}}
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="4">
               <ion-button fill="clear" (click)="pagoTarjeta(reintegroactivo)">
-                <ion-icon slot="end" color="success" name="card-outline"></ion-icon>
+                <ion-icon slot="end" color="success" class="icono" name="card-outline"></ion-icon>
               </ion-button>
             </ion-col>
             <ion-col size="4">
               <ion-button fill="clear" (click)="pagoCuenta(reintegroactivo)">
-                <ion-icon slot="end" color="warning" name="journal-outline"></ion-icon>
+                <ion-icon slot="end" color="warning" class="icono" name="journal-outline"></ion-icon>
               </ion-button>
             </ion-col>
             <ion-col size="4">
               <ion-button fill="clear" (click)="onClick(reintegroactivo.idReintegro)">
-                <ion-icon slot="end" color="danger" name="close-circle-outline"></ion-icon>
+                <ion-icon slot="end" color="danger" class="icono" name="close-circle-outline"></ion-icon>
               </ion-button>
             </ion-col>
           </ion-row>
@@ -58,7 +58,7 @@
         </ion-card-title>
       </ion-card-header>
       <ion-item *ngFor="let reintegrocancelado of reintegrosCancelados" >
-        <ion-icon slot="start" name="close-outline"></ion-icon>
+        <ion-icon slot="start" color="tertiary" name="close-outline"></ion-icon>
         <ion-grid fixed>
           <ion-row>
             <ion-col>
@@ -67,7 +67,7 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              Motivo: {{reintegrocancelado.referencia}}
+              Refrencia: {{reintegrocancelado.referencia}}
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -81,7 +81,7 @@
         </ion-card-title>
       </ion-card-header>
       <ion-item *ngFor="let reintegrosexitoso of reintegrosExitosos" >
-        <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+        <ion-icon slot="start" color="tertiary"name="checkmark-outline"></ion-icon>
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -90,7 +90,7 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              Motivo: {{reintegrosexitoso.referencia}}
+              Refrencia: {{reintegrosexitoso.referencia}}
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -98,3 +98,8 @@
     </ion-card> 
   </ion-list>
 </ion-content>
+<style>
+  .icono{
+    font-size: 30px;
+  }
+</style>

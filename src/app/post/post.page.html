@@ -38,12 +38,8 @@
         </ion-card-title>
       </ion-card-header>
       <ion-item *ngFor="let cobroactivo of cobrosActivos" >
+        <ion-icon slot="end" color="tertiary" name="flag-outline"></ion-icon>
         <ion-grid fixed>
-          <ion-row>
-            <ion-col>
-              <ion-icon slot="start" name="flag-outline"></ion-icon>
-            </ion-col>
-          </ion-row>
           <ion-row>
             <ion-col >
                   Fecha: {{cobroactivo.fecha.day}}/{{cobroactivo.fecha.month}}/{{cobroactivo.fecha.year}} 
@@ -78,6 +74,7 @@
     padding: 16px;
   }
   .titular{
+    font-size: 20px;
     text-align: center;
     color: #3ca7d0;
     padding: 16px;

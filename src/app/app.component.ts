@@ -123,10 +123,12 @@ export class AppComponent {
     this.usuarioService.ejecutarCierre().subscribe(
       (data: any) => {
         this.monto = data.monto;
-        this.dia = data.fecha.dia;
-        this.mes = data.fecha.mes;
-        this.año = data.fecha.año;
+        this.dia = data.fecha.day;
+        this.mes = data.fecha.month;
+        this.año = data.fecha.year;
         this.referencia = data.referencia;
+
+
       }
     )
     const alert = await this.alertController.create({
